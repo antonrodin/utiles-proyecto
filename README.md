@@ -1,7 +1,8 @@
 # SuperChachi Proyecto de Neoland
 
-![alt text](https://raw.githubusercontent.com/antonrodin/utiles-proyecto/master/images/croquis.jpg)
+Documentación inicial del proyecto de NeoLand, es decir un pequeño prototipo funcional de como deberia de estar hecho, esquemas, modelo de datos, requisitos... etc.
 
+![alt text](https://raw.githubusercontent.com/antonrodin/utiles-proyecto/master/images/croquis.jpg)
 
 
 # Cosas utiles para el proyecto de Neoland
@@ -14,9 +15,61 @@
 
 ## ExpressJS
 
+ExpressJS es un framework que funciona en el entorno de NodeJS y que será nuestro encargado de interactuar con la base de datos MySQL y servir datos para nuestra aplicación cliente hecha en Angular. Es decir desde AngularJS haremos peticiones a **http://projecto/usuarios** y nos devolverá un JSON con una colección de usuarios.
+
+### Instalación basica de Express
+
+Instalación basica y una aplicación basica de express funcional
+
+```bash
+# Crear carpeta app
+mkdir app
+
+# Inicializar el proyecto con datos por defecto
+# Se creara un archivo package.json
+npm init -y
+
+# Instalar express
+npm install express
+
+# Crear nuestra aplicación, el archivo index.js
+touch index.js
+```
+
+Contenido basico/inicial de expressJS
+
+```javascript
+const express = require('express');
+const app = express();
+
+// Settings
+// En este caso especificamos el puerto donde vamos a servir nuestra app
+// Es decir será http://localhost:3000
+const port = process.env.PORT || 3000;
+
+// Middleware
+// Estos dos en concreto se necesitarian para poder recibir parametros
+// Dentro de nuestras rutas
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
+// Routes
+// Dos rutas una que devuele Hello World y otra que devuelve una lista de pacientes
+app.get('/', (req, res) => res.send('hello world'));
+app.get('/pacientes', (req, res) => res.json([
+	{ nombre: "Anton", diagnostico: "Gripe" },
+	{ nombre: "David", diagnostico: "Resfriado" }
+])); 
+
+// Start Server
+// Aquí inicializamos la aplicacion en si, se le pasas un callback que basicamente
+// Saca por pantalla donde esta funcionando.
+app.listen(port, () => console.log(`Example app on http://localhost:${port}`))
+```
+
 ### Rutas Express.JS
 
-Las rutas del proyecto que habria que incorporar. Basicamente es crear un CRUD (Create, Read, Update & Delete) de **usuario**, **location** y **event**.
+Las rutas del proyecto que habria que incorporar. Basicamente es crear un CRUD (Create, Read, Update & Delete) de **usuario**, **locations** y **events**.
 
 ```javascript
 [
