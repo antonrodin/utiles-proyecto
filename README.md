@@ -5,7 +5,7 @@ Documentación inicial del proyecto de NeoLand, es decir un pequeño prototipo f
 ![alt text](https://raw.githubusercontent.com/antonrodin/utiles-proyecto/master/images/croquis.jpg)
 
 
-# Cosas utiles para el proyecto de Neoland
+## Cosas utiles para el proyecto de Neoland
 
 * /presentacion-tania.pdf Presentación en el que se basaria el proyecto.
 
@@ -24,6 +24,7 @@ Instalación basica y una aplicación basica de express funcional
 ```bash
 # Crear carpeta app
 mkdir app
+cd app
 
 # Inicializar el proyecto con datos por defecto
 # Se creara un archivo package.json
@@ -36,7 +37,7 @@ npm install express
 touch index.js
 ```
 
-Contenido basico/inicial de expressJS
+Contenido basico/inicial de __index.js__
 
 ```javascript
 const express = require('express');
