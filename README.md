@@ -2,10 +2,29 @@
 
 Documentación inicial del proyecto de NeoLand, es decir un pequeño prototipo funcional de como deberia de estar hecho, esquemas, modelo de datos, requisitos... etc.
 
+## Menu
+---
+
+- [Croquis](#awesome-croquis)
+- [Cosas Utiles](#cosas-utiles)
+- [CSS](#css)
+- [Angular](#angular)
+    - [Rutas](#las-rutas-del-bacalao)
+    - [Modelos](#modelos)
+    - [Servicios](#servicios)
+- [ExpressJS](#expressjs)
+    - [Instalacion](#instalacion)
+    - [Rutas](#rutas)
+
+## Awesome Croquis
+
+---
+
 ![alt text](https://raw.githubusercontent.com/antonrodin/utiles-proyecto/master/images/croquis.jpg)
 
 
-## Cosas utiles para el proyecto de Neoland
+## Cosas utiles
+---
 
 * /presentacion-tania.pdf Presentación en el que se basaria el proyecto.
 
@@ -14,6 +33,7 @@ Documentación inicial del proyecto de NeoLand, es decir un pequeño prototipo f
 * /objetos Objetos o modelo de datos que posiblemente vayamos a utilizar. Como esta todo inventado en este mundo, esta basado en esto:  https://schema.org/Event, https://schema.org/TheaterEvent (Abajo hay JSON) y en como Google sugiere que se haga: https://developers.google.com/search/docs/data-types/event
 
 ## CSS
+---
 
 Organización de código CSS. ¿Porque? Porque CSS es un lenguaje muy sucio y se va de las putas manos cuando el proyecto crece. Por ello es importante tomar decisiones iniciales como la metodologia y algún patrón. 
 
@@ -50,6 +70,7 @@ Aquí hay un video explicativo de BEM en Español:
 [![](http://img.youtube.com/vi/wDUwGo98JTA/0.jpg)](http://www.youtube.com/watch?v=wDUwGo98JTA "BEM CSS")
 
 ## Angular
+---
 
 ### Las Rutas del Bacalao
 
@@ -117,11 +138,41 @@ Temas de organización de rutas y componentes. Como va a haber un porron de comp
 
 ```
 
+### Modelos
+
+En principio tenemos tres modelos: User, Event & Location por consiguiente hay que **crear tres archivos a mano** (no hay comando para ello): User.ts, Event.ts y Location.ts:
+
+```bash
+# Se crean manualmente dentro del directorio model o models
+# Consultar otros proyectos que hemos hecho en clase
+model/User.ts
+model/Event.ts
+model/Location.ts
+```
+
+### Servicios
+
+Para "operar" con cada modelo, en principio tendremos tres servicios que se encarguen de ello.
+Los organizaremos dentro del directorio services:
+
+```bash
+# Para crear los servicios
+ng generate serice service/User
+ng generate serice service/Event
+ng generate serice service/Location
+
+# Nos creara estos tres servicios
+service/User.service.ts
+service/Event.service.ts
+service/Location.service.ts
+```
+
 ## ExpressJS
+---
 
 ExpressJS es un framework que funciona en el entorno de NodeJS y que será nuestro encargado de interactuar con la base de datos MySQL y servir datos para nuestra aplicación cliente hecha en Angular. Es decir desde AngularJS haremos peticiones a **http://projecto/usuarios** y nos devolverá un JSON con una colección de usuarios.
 
-### Instalación basica de Express
+### Instalacion
 
 Instalación basica y una aplicación basica de express funcional
 
@@ -172,7 +223,7 @@ app.get('/pacientes', (req, res) => res.json([
 app.listen(port, () => console.log(`Example app on http://localhost:${port}`))
 ```
 
-### Rutas Express.JS
+### Rutas
 
 Las rutas del proyecto que habria que incorporar. Basicamente es crear un CRUD (Create, Read, Update & Delete) de **usuario**, **locations** y **events**.
 
