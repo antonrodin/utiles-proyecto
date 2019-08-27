@@ -13,6 +13,110 @@ Documentación inicial del proyecto de NeoLand, es decir un pequeño prototipo f
 
 * /objetos Objetos o modelo de datos que posiblemente vayamos a utilizar. Como esta todo inventado en este mundo, esta basado en esto:  https://schema.org/Event, https://schema.org/TheaterEvent (Abajo hay JSON) y en como Google sugiere que se haga: https://developers.google.com/search/docs/data-types/event
 
+## CSS
+
+Organización de código CSS. ¿Porque? Porque CSS es un lenguaje muy sucio y se va de las putas manos cuando el proyecto crece. Por ello es importante tomar decisiones iniciales como la metodologia y algún patrón. 
+
+En este caso propongo usar el **7-1 de SASS** en formato reducido y la metodologia moderna **BEM**. La estructura de carpetas de un 7-1 es esta: https://gist.github.com/rveitch/84cea9650092119527bc
+
+Uno de los ejemplos de BEM lo hemos tenido en el componente **.hero**
+
+```html
+<div class="hero">
+    <div class="hero__centrar">
+        <h1 class="hero__title">OFF Madrid</h1>
+    </div>
+</div>
+```
+
+```css
+.hero {
+    width: 100%;
+    height: 95vh;
+}
+
+.hero__centrar {
+    position: absolute;
+    ...
+}
+
+.hero__title {
+
+}
+```
+
+Aquí hay un video explicativo de BEM en Español:
+
+[![](http://img.youtube.com/vi/wDUwGo98JTA/0.jpg)](http://www.youtube.com/watch?v=wDUwGo98JTA "BEM CSS")
+
+## Angular
+
+### Las Rutas del Bacalao
+
+Esto son las rutas posibles a desarrollar. ¡Ojo! Va a habe un follón, es decir cambios de última hora.
+
+```javascript
+[
+  /* Las rutas facilicillas a maquetar (Inicio), 1ª semana */
+  /**********************************************/
+  { path: '/', component: MainComponent },
+  { path: '/main', component: MainComponent },
+  { path: '/about', component: AboutComponent },
+  { path: '/teatros', component: TeatrosComponent },
+
+  /* Las rutas complicaillas 2ª y 3ª semana */
+  /**********************************************/
+
+  // Formulario de Login
+  { path: '/user/login', component: LoginComponent },
+
+  // Formulario de Registro
+  { path: '/user/register', component: RegisterComponent },
+  
+  // Panel de control de usuario o el perfil, donde tiene los botones de
+  // añadir, borrar eventos o teatros
+  { path: '/user/:id', component: ProfileComponent },
+  
+  // Formularios de crear y actualizar el recinto
+  { path: '/location/create', component: LocationCreateComponent },
+  { path: '/location/update', component: LocationUpdateComponent },
+
+    // Formularios de crear y actualizar el evento o la obra
+  { path: '/event/create', component: EventCreateComponent },
+  { path: '/event/update', component: EventUpdateComponent },
+
+]
+```
+
+Temas de organización de rutas y componentes. Como va a haber un porron de componentes, los organizamos por carpetillas:
+
+```bash
+
+# Template
+/template/HeaderComponent
+/template/HeroComponent
+/template/FooterComponent
+
+# Paginas estaticas o casi
+/pages/MainComponent
+/pages/AboutComponent
+/pages/TheatreComponent
+
+# Relativo al registro y login de usuarios
+/user/LoginComponent
+/user/RegisterComponent
+/user/ProfileComponent
+
+# Relativo a Locations (Teatros, Salas...)
+/location/LocationCreateComponent
+/location/LocationUpdateComponent
+
+# Relativo a Eventos
+/event/EventCreateComponent
+/event/EventUpdateComponent
+
+```
+
 ## ExpressJS
 
 ExpressJS es un framework que funciona en el entorno de NodeJS y que será nuestro encargado de interactuar con la base de datos MySQL y servir datos para nuestra aplicación cliente hecha en Angular. Es decir desde AngularJS haremos peticiones a **http://projecto/usuarios** y nos devolverá un JSON con una colección de usuarios.
